@@ -1,0 +1,82 @@
+<!-- Education Section -->
+<section id="education" class="pt-16 md:pt-18 bg-[#151515]">
+  <div class="max-w-6xl mx-auto px-6">
+    
+    <!-- Section Heading -->
+    <h2 class="font-display text-4xl md:text-5xl text-[#e35a30] mb-6 tracking-widest uppercase animate-slide-up" style="animation-delay: 100ms;">
+      Education
+    </h2>
+
+    <!-- Education Card Container -->
+    <div class="bg-[#1c1c1c] rounded-[2rem] p-6 md:p-10 shadow-2xl animate-slide-up" style="animation-delay: 200ms;">
+
+      <!-- Table Header (Disembunyikan di Mobile) -->
+      <div class="hidden md:grid grid-cols-12 gap-8 text-gray-500 text-sm mb-2 border-b border-white/10 pb-2 animate-slide-up" style="animation-delay: 300ms;">
+        <div class="col-span-3">Period</div>
+        <div class="col-span-3">Institution & Major</div>
+        <div class="col-span-6">Description</div>
+      </div>
+
+      <!-- Row 1: Universitas Andalas -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start pb-4 border-b border-white/10 animate-slide-up" style="animation-delay: 400ms;">
+        <!-- Period -->
+        <div class="md:col-span-3 text-gray-300 text-sm md:text-base font-medium">
+          Aug 2021 - Jan 2026
+        </div>
+        
+        <!-- Institution -->
+        <div class="md:col-span-3">
+          <h3 class="font-display text-2xl text-white tracking-wide uppercase">
+            Universitas Andalas
+          </h3>
+          <p class="text-gray-400 text-sm mt-0">Computer Engineering</p>
+        </div>
+        
+        <!-- Description -->
+        <div class="md:col-span-6 text-gray-400 text-sm leading-relaxed">
+          Graduated Cum Laude with a Bachelor's Degree in Computer Engineering from Andalas University. Coursework included Software Engineering, Database Systems, Cloud Computing, and UX. Developed hands-on projects in mobile and web development, and achieved 3rd Place in the FireTech Hackathon 2024.
+        </div>
+      </div>
+
+      <!-- Row 2: Bangkit Academy -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start pt-2 animate-slide-up" style="animation-delay: 500ms;">
+        <!-- Period -->
+        <div class="md:col-span-3 text-gray-300 text-sm md:text-base font-medium">
+          Feb 2024 - Jul 2024
+        </div>
+        
+        <!-- Institution -->
+        <div class="md:col-span-3">
+          <h3 class="font-display text-2xl text-white tracking-wide uppercase">
+            Bangkit Academy
+          </h3>
+          <p class="text-gray-400 text-sm mt-0">Mobile Development</p>
+        </div>
+        
+        <!-- Description -->
+        <div class="md:col-span-6 text-gray-400 text-sm leading-relaxed">
+          Completed an intensive mobile development program focused on Android application development using Kotlin. Collaborated with peers from Machine Learning and Cloud Computing specializations on an interdisciplinary capstone project, developing an integrated solution that combined Mobile, AI, and Cloud Technologies to address real-world problems.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideUp {
+    0% { 
+      opacity: 0; 
+      transform: translateY(24px); 
+    }
+    100% { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+</style>

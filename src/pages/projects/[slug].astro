@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/layout.astro';
+import { projectsData } from '../../data/projectData'
+import Footer from '../../components/Footer.astro';
+
+// Menyiapkan jalur dinamis untuk setiap proyek
+export function getStaticPaths() {
+  return Object.keys(projectsData).map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+// Tambahkan "as any" jika TypeScript masih protes soal index signature
+const project = (projectsData as any)[slug]; 
+
+// Jika slug tidak ditemukan
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+const techIcons: Record<string, string> = {
+  "Android App": "https://cdn.simpleicons.org/android/3DDC84",
+  "Web App": "/icon/web.svg",
+  "Django REST API": "/icon/django.svg",
+  "Laravel": "https://cdn.simpleicons.org/laravel/FF2D20",
+  "PHP": "https://cdn.simpleicons.org/php/777BB4",
+  "Kotlin": "https://cdn.simpleicons.org/kotlin/7F52FF",
+  "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+  "JavaScript": "https://cdn.simpleicons.org/javascript/F7DF1E",
+  "CSS": "/icon/css.svg",
+  "SQLite": "https://cdn.simpleicons.org/sqlite/003B57",
+  "Android Studio": "https://cdn.simpleicons.org/androidstudio/3DDC84",
+  "TensorFlow Lite": "https://cdn.simpleicons.org/tensorflow/FF6F00",
+  "Figma": "https://cdn.simpleicons.org/figma/F24E1E",
+  "Jetpack Compose": "https://cdn.simpleicons.org/jetpackcompose/4285F4",
+  "MySQL": "https://cdn.simpleicons.org/mysql/4479A1",
+  "Bootstrap CSS": "/icon/bootstrap.svg" 
+};
+---
+
+<Layout title={`Project | ${project.title}`}>
+  <section class="py-20 bg-[#151515] min-h-screen text-gray-300">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <!-- Tombol Kembali -->
+       <div class="mb-8">
+        <a href="/#projects" class="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm font-medium transition-colors">
+            ← Back to Projects
+        </a>
+        </div>
+
+      <!-- Header Proyek -->
+      <div class="bg-[#1c1c1c] rounded-[2rem] p-8 md:p-12 border border-white/5 mb-12">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 pb-8 border-b border-white/10">
+          <div>
+            <span class="text-[#e35a30] text-xs font-bold tracking-widest uppercase mb-2 block">Project</span>
+            <h1 class="font-display text-4xl md:text-5xl text-white tracking-wide uppercase">
+              {project.title} <span class="text-gray-500 text-2xl font-normal ml-2">{project.year}</span>
+            </h1>
+          </div>
+        </div>
+
+        <!-- Metadata Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div>
+            <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Status</p>
+            <p class="text-white font-medium text-sm flex items-center gap-2">
+            <span class={`w-2 h-2 rounded-full animate-pulse ${project.status.toLowerCase() === 'ongoing' ? 'bg-amber-500' : 'bg-emerald-500'}`}></span>
+              {project.status}
+            </p>
+          </div>
+          <div>
+            <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Project Type</p>
+            <p class="text-white font-medium text-sm">{project.type}</p>
+          </div>
+          <div>
+            <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">My Role</p>
+            <p class="text-white font-medium text-sm">{project.role}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deskripsi & Tech Stack -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-8">
+        <div class="lg:col-span-8">
+          <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-4">Project Overview</h2>
+          <p class="text-gray-400 text-base leading-relaxed mb-6">{project.overview}</p>
+        </div>
+        <div class="lg:col-span-4 bg-[#1c1c1c] p-6 rounded-3xl border border-white/5 h-fit">
+          <h3 class="font-display text-lg text-white uppercase tracking-wide mb-4">Technology Stack</h3>
+          <div class="flex flex-wrap gap-2">
+            {project.techStack.map((tech: string) => (
+              <span class="bg-white/5 text-gray-300 text-xs px-3 py-1.5 rounded-xl border border-white/10 flex items-center gap-2">
+                {/* Cek apakah URL icon tersedia di kamus */}
+              {techIcons[tech] && (
+                <img 
+                  src={techIcons[tech]} 
+                  alt={`${tech} icon`} 
+                  class="w-4 h-4 object-contain" 
+                  loading="lazy"
+                />
+              )}
+              
+              {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+     <!-- Galeri Gambar -->
+      <div class="space-y-6">
+        <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-4">Interface & Mockups</h2>
+        
+        <!-- Gambar Utama (Memenuhi Container Edge-to-Edge) -->
+        <div class="bg-[#1c1c1c] rounded-[2rem] border border-white/5 overflow-hidden w-full aspect-video md:aspect-[21/9]">
+          <img 
+            src={project.images.main} 
+            alt={`${project.title} Main Mockup`} 
+            class="w-full h-full object-cover" 
+          />
+        </div>
+
+        <!-- Grid Galeri Tambahan -->
+        {project.images.gallery && project.images.gallery.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            {project.images.gallery.map((img: string, index: number) => (
+              <div class="bg-[#1c1c1c] rounded-3xl border border-white/5 overflow-hidden aspect-[4/3] group">
+                <img 
+                  src={img} 
+                  alt={`${project.title} Gallery Image ${index + 1}`} 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,132 @@
+---
+// Daftar seksi berdasarkan anchor ID, bukan URL path
+const navItems = [
+  { 
+    name: 'Home', 
+    href: '#home', 
+    icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>' 
+  },
+  { 
+    name: 'Projects', 
+    href: '#projects', 
+    icon: '<path d="M2 6l10-4v20L2 18V6z"></path><path d="M22 6l-10-4v20l10-4V6z"></path>' 
+  },
+  { 
+    name: 'Education', 
+    href: '#education', 
+    icon: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path>' 
+  },
+  { 
+    name: 'Experience', 
+    href: '#experience', 
+    icon: '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>' 
+  },
+  { 
+    name: 'Certifications', 
+    href: '#certifications', 
+    icon: '<circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>' 
+  },
+  { 
+    name: 'Tools & Techstack', 
+    href: '#tech-stack', 
+    icon: '<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>' 
+  },
+  { 
+    name: 'Contact', 
+    href: '#contact', 
+    icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>' 
+  }
+];
+---
+
+<!-- Fixed di atas tengah layar -->
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+  <ul class="flex items-center gap-1.5 p-1.5 bg-[#e5e5e5] rounded-[1.25rem] shadow-sm border border-gray-200/50 backdrop-blur-md">
+    {navItems.map((item) => (
+      <li>
+        <a 
+          href={item.href} 
+          aria-label={item.name}
+          class="nav-link relative flex items-center justify-center w-11 h-11 rounded-[0.85rem] text-zinc-600 transition-all duration-300 ease-out group hover:bg-zinc-300/60 hover:text-zinc-900"
+        > 
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.8" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            class="transition-transform duration-300 group-hover:scale-110"
+            set:html={item.icon}
+          />
+          
+          <!-- Tooltip Section Title (muncul di bawah navbar saat di-hover) -->
+          <span class="absolute top-14 px-2.5 py-1 text-xs font-medium text-white bg-zinc-800 rounded-md opacity-0 -translate-y-2 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap shadow-sm">
+            {item.name}
+            <!-- Segitiga penunjuk kecil ke atas -->
+            <span class="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-zinc-800"></span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  function initNavScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    let isLockedByHash = false;
+
+    function updateActiveState(sectionId: string) {
+      navLinks.forEach(link => {
+        link.classList.remove('bg-zinc-900', 'text-[#e35a30]', 'shadow-md');
+        link.classList.add('text-zinc-600');
+      });
+      
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (href.endsWith(`#${sectionId}`)) {
+          link.classList.remove('text-zinc-600');
+          link.classList.add('bg-zinc-900', 'text-[#e35a30]', 'shadow-md');
+        }
+      });
+    }
+
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash) {
+      isLockedByHash = true;
+      updateActiveState(currentHash);
+
+      setTimeout(() => {
+        isLockedByHash = false;
+      }, 500);
+    }
+
+    // Perbaikan Logika Observer
+    const observer = new IntersectionObserver((entries) => {
+      if (isLockedByHash) return;
+      
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          updateActiveState(entry.target.id);
+        }
+      });
+    }, {
+      // Hapus threshold. 
+      // Gunakan rootMargin untuk membuat zona pemicu di 20% dari atas layar.
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0
+    });
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initNavScrollSpy);
+  document.addEventListener('astro:page-load', initNavScrollSpy);
+</script>

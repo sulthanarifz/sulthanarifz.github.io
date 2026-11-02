@@ -2,7 +2,6 @@
 import Layout from '../../layouts/layout.astro';
 import { projectsData } from '../../data/projectData'
 
-// Menyiapkan jalur dinamis untuk setiap proyek
 export function getStaticPaths() {
   return Object.keys(projectsData).map((slug) => ({
     params: { slug },
@@ -10,10 +9,8 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-// Tambahkan "as any" jika TypeScript masih protes soal index signature
 const project = (projectsData as any)[slug]; 
 
-// Jika slug tidak ditemukan
 if (!project) {
   return Astro.redirect('/404');
 }
@@ -42,15 +39,15 @@ const techIcons: Record<string, string> = {
   <section class="py-20 bg-[#151515] min-h-screen text-gray-300">
     <div class="max-w-5xl mx-auto px-6">
       
-      <!-- Tombol Kembali -->
+      <!-- Back Button -->
        <div class="mb-8">
         <a href="/#projects" class="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm font-medium transition-colors">
             ← Back to Projects
         </a>
         </div>
 
-      <!-- Header Proyek -->
-      <div class="bg-[#1c1c1c] rounded-[2rem] p-8 md:p-12 border border-white/5 mb-12">
+      <!-- Header -->
+      <div class="bg-[#1c1c1c] rounded-[2rem] p-8 md:p-12 border border-white/5 mb-8">
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 pb-8 border-b border-white/10">
           <div>
             <span class="text-[#e35a30] text-xs font-bold tracking-widest uppercase mb-2 block">Project</span>
@@ -80,8 +77,8 @@ const techIcons: Record<string, string> = {
         </div>
       </div>
 
-      <!-- Deskripsi & Tech Stack -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-8">
+      <!-- Deskrition & Tech Stack -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-6">
         <div class="lg:col-span-8">
           <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-4">Project Overview</h2>
           <p class="text-gray-400 text-base leading-relaxed mb-6">{project.overview}</p>
@@ -108,20 +105,20 @@ const techIcons: Record<string, string> = {
         </div>
       </div>
 
-     <!-- Galeri Gambar -->
+     <!-- Gallery -->
       <div class="space-y-6">
         <h2 class="font-display text-2xl text-white uppercase tracking-wide mb-4">Interface & Mockups</h2>
         
-        <!-- Gambar Utama (Memenuhi Container Edge-to-Edge) -->
+        <!-- Main Image -->
         <div class="bg-[#1c1c1c] rounded-[2rem] border border-white/5 overflow-hidden w-full aspect-video md:aspect-[21/9]">
           <img 
-            src={project.images.main} 
+            src={project.images.top} 
             alt={`${project.title} Main Mockup`} 
             class="w-full h-full object-cover" 
           />
         </div>
 
-        <!-- Grid Galeri Tambahan -->
+        <!-- Images -->
         {project.images.gallery && project.images.gallery.length > 0 && (
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             {project.images.gallery.map((img: string, index: number) => (

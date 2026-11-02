@@ -34,7 +34,13 @@ export const projectsData = {
     techStack: ['Web App', 'PHP', 'Laravel', 'JavaScript', 'CSS', 'SQLite'],
     images: {
       main: '/cover/mala-nusa-cover.jpg',
-      gallery: [],
+      top: '/mala-nusa/main.png',
+      gallery: [
+        '/mala-nusa/1.jpg',
+        '/mala-nusa/2.jpg',
+        '/mala-nusa/3.jpg',
+        '/mala-nusa/4.jpg',
+      ],
     },
   },
 
@@ -60,7 +66,8 @@ export const projectsData = {
     ],
     images: {
       main: '/cover/manuscript-cover.jpg',
-      gallery: [],
+      top: '/manuscript/main.png',
+      gallery: ['/manuscript/1.jpg', '/manuscript/2.jpg'],
     },
   },
 
@@ -86,47 +93,48 @@ export const projectsData = {
     ],
     images: {
       main: '/cover/infruit-cover.jpg',
-      gallery: [],
+      top: '/infruit/main.png',
+      gallery: ['/infruit/1.jpg', '/infruit/2.jpg'],
     },
   },
 
-  tangguh: {
-    title: 'Tangguh',
-    year: '2024',
-    status: 'Completed',
-    type: 'Group Project',
-    role: 'Mobile Developer',
-    timeline: '',
-    liveUrl: '',
-    slug: 'tangguh',
-    short_description:
-      'A disaster relief mobile application that connects donors with aid posts, providing donation tracking and real-time updates to improve transparency and aid distribution.',
-    overview:
-      'Tangguh is a mobile application created to address the urgent need for efficient disaster relief and social support. In many natural disasters, victims struggle to receive timely aid, while donors often lack visibility on whether their contributions truly reach those in need. This gap leads to inefficiencies and uneven distributions.Our solution connects donors with disaster relief posts, making it easier to donate clothes, food, and other essentials. Tangguh also provides news updates about disaster needs and allows users to track the status of their donations until they reach recipients. By increasing transparency and simplifying the donation process, it ensures that assistance reaches communities more effectively. Through this project, I learned how to design applications for social impact and create transparent donation workflows.',
-    techStack: ['Android App', 'Kotlin', 'Django REST API', 'Android Studio'],
-    images: {
-      main: '/cover/tangguh-cover.jpg',
-      gallery: [],
-    },
-  },
+  // tangguh: {
+  //   title: 'Tangguh',
+  //   year: '2024',
+  //   status: 'Completed',
+  //   type: 'Group Project',
+  //   role: 'Mobile Developer',
+  //   timeline: '',
+  //   liveUrl: '',
+  //   slug: 'tangguh',
+  //   short_description:
+  //     'A disaster relief mobile application that connects donors with aid posts, providing donation tracking and real-time updates to improve transparency and aid distribution.',
+  //   overview:
+  //     'Tangguh is a mobile application created to address the urgent need for efficient disaster relief and social support. In many natural disasters, victims struggle to receive timely aid, while donors often lack visibility on whether their contributions truly reach those in need. This gap leads to inefficiencies and uneven distributions.Our solution connects donors with disaster relief posts, making it easier to donate clothes, food, and other essentials. Tangguh also provides news updates about disaster needs and allows users to track the status of their donations until they reach recipients. By increasing transparency and simplifying the donation process, it ensures that assistance reaches communities more effectively. Through this project, I learned how to design applications for social impact and create transparent donation workflows.',
+  //   techStack: ['Android App', 'Kotlin', 'Django REST API', 'Android Studio'],
+  //   images: {
+  //     main: '/cover/tangguh-cover.jpg',
+  //     gallery: [],
+  //   },
+  // },
 
-  'rs-naili-dbs': {
-    title: 'RS Naili DBS',
-    year: '2024',
-    status: 'Completed',
-    type: 'Group Project',
-    role: 'Web Developer',
-    timeline: '',
-    liveUrl: '',
-    slug: 'rs-naili-dbs',
-    short_description:
-      'A hospital company profile website built with Laravel, featuring a responsive frontend and an admin dashboard for managing healthcare information and content.',
-    overview:
-      'The RS Naili DBS Web Project is an integrated platform developed during my internship to modernize the hospital’s digital presence. It addresses the need for a dynamic company profile that allows internal staff to manage and update healthcare information efficiently without technical complexity. Built with the Laravel framework, the application features a responsive frontend and a robust admin dashboard for seamless data management. By bridging the gap between backend logic and intuitive UI, this project ensures that vital hospital services are easily accessible to the public. This experience sharpened my skills in building scalable web architectures and delivering functional technology tailored to institutional needs.',
-    techStack: ['Web App', 'PHP', 'Laravel', 'MySQL', 'Bootstrap CSS'],
-    images: {
-      main: '/cover/naili-cover.jpg',
-      gallery: [],
-    },
-  },
+  // 'rs-naili-dbs': {
+  //   title: 'RS Naili DBS',
+  //   year: '2024',
+  //   status: 'Completed',
+  //   type: 'Group Project',
+  //   role: 'Web Developer',
+  //   timeline: '',
+  //   liveUrl: '',
+  //   slug: 'rs-naili-dbs',
+  //   short_description:
+  //     'A hospital company profile website built with Laravel, featuring a responsive frontend and an admin dashboard for managing healthcare information and content.',
+  //   overview:
+  //     'The RS Naili DBS Web Project is an integrated platform developed during my internship to modernize the hospital’s digital presence. It addresses the need for a dynamic company profile that allows internal staff to manage and update healthcare information efficiently without technical complexity. Built with the Laravel framework, the application features a responsive frontend and a robust admin dashboard for seamless data management. By bridging the gap between backend logic and intuitive UI, this project ensures that vital hospital services are easily accessible to the public. This experience sharpened my skills in building scalable web architectures and delivering functional technology tailored to institutional needs.',
+  //   techStack: ['Web App', 'PHP', 'Laravel', 'MySQL', 'Bootstrap CSS'],
+  //   images: {
+  //     main: '/cover/naili-cover.jpg',
+  //     gallery: [],
+  //   },
+  // },
 };

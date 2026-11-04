@@ -1,7 +1,7 @@
 <section id="home" class="relative min-h-screen flex items-center justify-center bg-[#151515] overflow-hidden pt-24 md:pt-20">
   <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-8 items-center w-full">
     
-    <!-- Left Content (Staggered Slide Up) -->
+    <!-- Left Content -->
     <div class="z-10">
       
       <p class="text-[#e35a30] text-lg font-medium tracking-wide animate-slide-up" style="animation-delay: 100ms;">
@@ -58,40 +58,28 @@
 
     </div>
 
-    <!-- Right Image Section (Fade in Scale) -->
+    <!-- Right Image Section -->
     <div class="relative w-[85%] sm:w-[80%] max-w-xs lg:max-w-[340px] mx-auto lg:mx-0 lg:ml-auto mt-4 lg:mt-0 animate-fade-in-scale" style="animation-delay: 400ms;">
       
-      <!-- Latar Belakang Dekoratif Gelap -->
+      <!-- Background -->
       <div class="absolute top-4 -right-4 lg:top-6 lg:-right-6 w-full h-full bg-[#20201E] rounded-[2rem] -z-10"></div>
 
-      <!-- Container Utama (Hapus border dari sini) -->
       <div class="relative w-full aspect-[4/5] bg-zinc-800 rounded-[2rem] overflow-hidden shadow-2xl z-10">
         
-        <!-- Gambar murni, kembali ke kode paling awal -->
         <img 
           src="/profile.jpeg" 
           alt="Sulthan Arif Zhafran" 
           class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 ease-out object-top" 
         />
 
-        <!-- Overlay Border: Menimpa batas luar gambar untuk menutup gerigi -->
-        <div class="absolute inset-0 rounded-[2rem] pointer-events-none"></div>
-        
+        <div class="absolute inset-0 rounded-[2rem] pointer-events-none"></div>        
       </div>
-
     </div>
  
-
   </div>
 </section>
 
 <style>
-  /* 
-    Isolasi CSS animasi hanya berlaku di komponen ini.
-    opacity awal diset 0 untuk mencegah elemen "berkedip" sebelum animasi berjalan.
-    'forwards' memastikan elemen tetap pada state akhir (opacity 1) setelah animasi selesai.
-  */
-  
   .animate-slide-up {
     opacity: 0;
     animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
